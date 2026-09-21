@@ -1,11 +1,16 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from Bio.PDB import PDBParser
-from Bio.SeqUtils import seq1
-import tempfile
-import os
-import math
 
+app = FastAPI()
+
+# ADD THIS BLOCK:
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # Create FastAPI application
 app = FastAPI(title="ProteinSolver API")
 
@@ -152,4 +157,4 @@ async def analyze_protein(file: UploadFile = File(...)):
     finally:
 
         if temp_path and os.path.exists(temp_path):
-            os.remove(temp_path)
+            os.remove(temp_path
