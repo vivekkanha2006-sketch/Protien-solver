@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -157,4 +157,5 @@ async def analyze_protein(file: UploadFile = File(...)):
     finally:
 
         if temp_path and os.path.exists(temp_path):
+
             os.remove(temp_path)
